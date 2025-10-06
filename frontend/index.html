@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fraud Detection System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Fraud Detection</h1>
+            <p>Real-time transaction security analysis powered by XGBoost</p>
+        </div>
+
+        <div class="card">
+            <form id="fraudForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="amount">Transaction Amount ($)</label>
+                        <input type="number" id="amount" name="amount" step="0.01" min="0.01" required placeholder="99.99">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardType">Card Type</label>
+                        <select id="cardType" name="cardType" required>
+                            <option value="">Select...</option>
+                            <option value="visa">Visa</option>
+                            <option value="mastercard">Mastercard</option>
+                            <option value="amex">American Express</option>
+                            <option value="discover">Discover</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardLast4">Card Last 4 Digits</label>
+                        <input type="text" id="cardLast4" name="cardLast4" maxlength="4" pattern="[0-9]{4}" required placeholder="1234">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deviceType">Device Type</label>
+                        <select id="deviceType" name="deviceType" required>
+                            <option value="">Select...</option>
+                            <option value="mobile">Mobile</option>
+                            <option value="desktop">Desktop</option>
+                            <option value="tablet">Tablet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country" required>
+                            <option value="">Select...</option>
+                            <option value="US">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="CA">Canada</option>
+                            <option value="IN">India</option>
+                            <option value="AU">Australia</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipCode">Zip/Postal Code</label>
+                        <input type="text" id="zipCode" name="zipCode" required placeholder="12345">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="customer@example.com">
+                        <span class="info-badge">Domain will be analyzed</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Analyze Transaction</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+
+            <div id="result" class="result-container">
+                <div class="result-icon" id="resultIcon"></div>
+                <div class="result-title" id="resultTitle"></div>
+                <div class="result-message" id="resultMessage"></div>
+                
+                <div class="result-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Transaction ID:</span>
+                        <span id="transactionId"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Amount:</span>
+                        <span id="displayAmount"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Risk Score:</span>
+                        <span id="riskScore"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Model Confidence:</span>
+                        <span id="confidence"></span>
+                    </div>
+                    
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceFill">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
